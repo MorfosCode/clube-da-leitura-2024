@@ -1,24 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ClubeDaLeitura.ConsoleApp.Amigo">
-    <Position X="5.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAQAAAAAAA=</HashCode>
-      <FileName>Amigo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ClubeDaLeitura.ConsoleApp.Caixa">
     <Position X="0.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Caixa.cs</FileName>
+      <FileName>Caixa\Caixa.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClubeDaLeitura.ConsoleApp.Revista">
     <Position X="2.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAACAAAAAAAAAAAIAAABAEAAAAAA=</HashCode>
-      <FileName>Revista.cs</FileName>
+      <FileName>Revista\Revista.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="Caixa" />
@@ -28,7 +21,7 @@
     <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
-      <FileName>Emprestimo.cs</FileName>
+      <FileName>Emprestimo\Emprestimo.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="Revista" />
