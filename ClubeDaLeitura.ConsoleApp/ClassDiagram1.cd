@@ -16,9 +16,6 @@
   </Class>
   <Class Name="ClubeDaLeitura.ConsoleApp.Revista">
     <Position X="2.5" Y="2.25" Width="1.5" />
-    <Members>
-      <Field Name="titulo" Hidden="true" />
-    </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAACAAAAAAAAAAAIAAABAEAAAAAA=</HashCode>
       <FileName>Revista.cs</FileName>
