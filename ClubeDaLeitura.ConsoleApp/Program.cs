@@ -1,5 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
 using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 
 
 namespace ClubeDaLeitura.ConsoleApp
@@ -16,6 +17,14 @@ namespace ClubeDaLeitura.ConsoleApp
             telaAmigos.repositorio=repositorioAmigos;
             #endregion
 
+            #region CAixa
+            RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+
+            TelaCaixa telaCaixa = new TelaCaixa();
+            telaCaixa.tipoEntidade = "Caixa";
+            telaCaixa.repositorio = repositorioCaixa;
+            #endregion
+
             while (true)
             {
                 char opcaoPrincipalEscolhida = TelaPrincipal.ApresentarMenuPrincipal();
@@ -27,6 +36,8 @@ namespace ClubeDaLeitura.ConsoleApp
 
                 if (opcaoPrincipalEscolhida == '1')
                     tela = telaAmigos;
+                else if(opcaoPrincipalEscolhida == '2')
+                    tela = telaCaixa;
 
 
 
