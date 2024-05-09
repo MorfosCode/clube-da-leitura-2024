@@ -9,7 +9,7 @@ using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 {
-    internal class Revista : EntidadeBase
+    public class Revista : EntidadeBase
     {
         public string titulo { get; set; }
         public int numeroRevista { get; set; }

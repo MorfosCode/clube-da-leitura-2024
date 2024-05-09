@@ -12,12 +12,16 @@ namespace ClubeDaLeitura.ConsoleApp
     {
         public string cor { get; set; }
         public string etiqueta { get; set; }
-        public int numero { get; set; }
-        public Caixa(string cor, string etiqueta, int numero)
+        public int numero { get; set; } 
+        public int diasEmprestimo { get; set; }
+
+        
+        public Caixa(string cor, string etiqueta, int numero, int diasEmprestimo)
         {
             this.cor = cor;
             this.etiqueta = etiqueta;
             this.numero = numero;
+            this.diasEmprestimo = diasEmprestimo;
         }
 
         public override ArrayList Validar()
@@ -32,6 +36,8 @@ namespace ClubeDaLeitura.ConsoleApp
 
             if (numero == null)
                 erros.Add("Por favor informe o número da caixa");
+            if (diasEmprestimo < 1)
+                erros.Add("Um empréstimo precisa ser feito por pelo menos um dia!");
 
             return erros;
         }
@@ -42,6 +48,7 @@ namespace ClubeDaLeitura.ConsoleApp
             this.cor = caixa.cor;
             this.etiqueta = caixa.etiqueta;
             this.numero = caixa.numero;
+            this.diasEmprestimo=caixa.diasEmprestimo;
         }
     }
 }
