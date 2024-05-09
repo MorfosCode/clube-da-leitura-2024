@@ -13,11 +13,13 @@ namespace ClubeDaLeitura.ConsoleApp
         public string cor { get; set; }
         public string etiqueta { get; set; }
         public int numero { get; set; }
-        public Caixa(string cor, string etiqueta, int numero)
+        public int diasEmpretimos { get; set; }
+        public Caixa(string cor, string etiqueta, int numero, int diassempretimos)
         {
             this.cor = cor;
             this.etiqueta = etiqueta;
             this.numero = numero;
+            this.diasEmpretimos = diasEmpretimos;
         }
 
         public override ArrayList Validar()
@@ -33,6 +35,9 @@ namespace ClubeDaLeitura.ConsoleApp
             if (numero == null)
                 erros.Add("Por favor informe o número da caixa");
 
+            if (diasEmpretimos == null)
+                erros.Add("Por favor informe quantos dias as revista estão disponiveis para empérstimo");
+
           
 
             return erros;
@@ -44,6 +49,7 @@ namespace ClubeDaLeitura.ConsoleApp
             this.cor = caixa.cor;
             this.etiqueta = caixa.etiqueta;
             this.numero = caixa.numero;
+            this.diasEmpretimos = diasEmpretimos;
         }
     }
 }

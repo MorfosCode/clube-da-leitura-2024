@@ -79,11 +79,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.Write("Informe o etiqueta: ");
             string etiqueta = Console.ReadLine();
 
-            Console.Write("Informe onumero da caixa: ");
-            int numero = Convert.ToInt32(Console.ReadLine());   
+            Console.Write("Informe o numero da caixa: ");
+            int numero = Convert.ToInt32(Console.ReadLine());  
+            Console.Write("Informe a quantidade de dia disponiveis comessa etiqueta: ");
+            int dias = Convert.ToInt32(Console.ReadLine());   
 
 
-            Caixa novaCaixa = new Caixa(cor, etiqueta, numero);
+            Caixa novaCaixa = new Caixa(cor, etiqueta, numero, dias);
 
             return novaCaixa;
         }
