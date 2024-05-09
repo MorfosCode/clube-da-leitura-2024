@@ -47,7 +47,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -10} | {1, -15} | {2, -15} | {3, -20} | {4, -5}",
+                "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -20}",
                 "Id", "Nome", "Responsavel", "Telefone", "Endereço"
             ); ArrayList amigosCadastradas = repositorio.SelecionarTodos();
 
@@ -57,7 +57,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
                     continue;
 
                 Console.WriteLine(
-                    "{0, -10} | {1, -15} | {2, -15} | {3, -20} | {4, -5}",
+                    "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -20}",
                     amigo.Id,
                     amigo.nome,
                     amigo.responsavel,
@@ -80,7 +80,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
             Console.Write("Informe o telefone: "); 
             string telefone = Console.ReadLine();
 
-            Console.Write("Informe o endereçço: ");
+            Console.Write("Informe o endereço: ");
             string endereco = Console.ReadLine();
 
             Amigo novoAmigo = new Amigo(nome, responsavel,telefone,endereco);

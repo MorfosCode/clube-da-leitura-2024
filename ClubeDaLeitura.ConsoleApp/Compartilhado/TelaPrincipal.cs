@@ -26,6 +26,7 @@
 
             char opcaoEscolhida = Console.ReadLine()[0];
 
+            
             return opcaoEscolhida;
         }
     }

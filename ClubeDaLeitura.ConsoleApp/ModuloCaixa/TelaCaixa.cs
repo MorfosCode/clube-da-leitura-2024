@@ -51,16 +51,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.WriteLine(
                 "{0, -10} | {1, -15} | {2, -15} | {3, -20} ",
                 "Id", "Cor", "Etiqueta", "Numero"
-            ); ArrayList caixaCadastradas = repositorio.SelecionarTodos();
+            );
+            
+            ArrayList caixaCadastradas = repositorio.SelecionarTodos();
 
-            foreach (Caixa caixa
-                in caixaCadastradas)
+            foreach (Caixa caixa in caixaCadastradas)
             {
                 if (caixa == null)
                     continue;
 
                 Console.WriteLine(
-                    "{0, -10} | {1, -15} | {2, -15} | {3, -20} }",
+                    "{0, -10} | {1, -15} | {2, -15} | {3, -20}",
                     caixa.Id,
                     caixa.cor,
                     caixa.etiqueta,
@@ -76,11 +77,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.Write("Informe a cor: ");
             string cor = Console.ReadLine();
 
-            Console.Write("Informe o etiqueta: ");
+            Console.Write("Informe a etiqueta: ");
             string etiqueta = Console.ReadLine();
 
-            Console.Write("Informe o numero da caixa: ");
-            int numero = Convert.ToInt32(Console.ReadLine());    
+            Console.Write("Informe o número da caixa: ");
+            int numero = Convert.ToInt32(Console.ReadLine());   
 
 
             Caixa novaCaixa = new Caixa(cor, etiqueta, numero);
