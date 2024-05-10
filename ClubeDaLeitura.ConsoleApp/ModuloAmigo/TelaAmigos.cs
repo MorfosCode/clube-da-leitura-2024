@@ -49,7 +49,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
             Console.WriteLine(
                 "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -20}",
                 "Id", "Nome", "Responsavel", "Telefone", "Endereço"
-            ); ArrayList amigosCadastradas = repositorio.SelecionarTodos();
+            );
+            
+            ArrayList amigosCadastradas = repositorio.SelecionarTodos();
 
             foreach (Amigo amigo in amigosCadastradas)
             {
@@ -65,7 +67,6 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
                     amigo.endereco
                 );
             }
-            Console.ReadLine();
             Console.WriteLine();
         }
 

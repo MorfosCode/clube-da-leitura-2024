@@ -60,13 +60,13 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 
         public EntidadeBase SelecionarPorId(int id)
         {
-            foreach (EntidadeBase e in registros)
+            foreach (EntidadeBase entidadeBase in registros)
             {
-                if (e == null)
+                if (entidadeBase == null)
                     continue;
 
-                else if (e.Id == id)
-                    return e;
+                else if (entidadeBase.Id == id)
+                    return entidadeBase;
             }
 
             return null;

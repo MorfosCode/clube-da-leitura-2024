@@ -69,6 +69,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Status da revista: ");
             string status = Console.ReadLine();
 
+            Console.WriteLine("Lista de caixas");
             telaCaixa.VisualizarRegistros(false);
 
             Console.Write("Id da caixa: ");

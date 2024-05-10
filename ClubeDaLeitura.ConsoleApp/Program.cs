@@ -12,7 +12,6 @@ namespace ClubeDaLeitura.ConsoleApp
         static void Main(string[] args)
         {
             RepositorioAmigos repositorioAmigos = new RepositorioAmigos();
-
             TelaAmigos telaAmigos = new TelaAmigos();
             telaAmigos.tipoEntidade = "Amigo";
             telaAmigos.repositorio = repositorioAmigos;
@@ -20,7 +19,6 @@ namespace ClubeDaLeitura.ConsoleApp
             telaAmigos.EntidadeTeste();
 
             RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
-
             TelaCaixa telaCaixa = new TelaCaixa();
             telaCaixa.tipoEntidade = "Caixa";
             telaCaixa.repositorio = repositorioCaixa;
