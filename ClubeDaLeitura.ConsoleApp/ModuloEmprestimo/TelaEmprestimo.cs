@@ -93,9 +93,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             int idRevista = Convert.ToInt32(Console.ReadLine());
             Revista revistaSelecinado = (Revista)repositorioRevistas.SelecionarPorId(idRevista);
 
-
-
-            Emprestimo novoEmprestimo = new Emprestimo(amigoSelecinado, revistaSelecinado);
+            Emprestimo novoEmprestimo = new Emprestimo(revistaSelecinado, amigoSelecinado);
 
             return novoEmprestimo;
         }

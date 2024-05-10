@@ -83,13 +83,19 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.Write("Informe o número da caixa: ");
             int numero = Convert.ToInt32(Console.ReadLine());
             
-            Console.Write("Informe o número da caixa: ");
+            Console.Write("Informe dia disponivel parar empréstimo: ");
             int dias = Convert.ToInt32(Console.ReadLine());   
 
 
             Caixa novaCaixa = new Caixa(cor, etiqueta, numero,dias);
 
             return novaCaixa;
+        }
+        public void EntidadeTeste()
+        {
+            Caixa caixa = new Caixa("Azul", "Novidades", 2, 3);
+
+            repositorio.Cadastrar(caixa);
         }
     }
 }

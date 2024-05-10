@@ -41,13 +41,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
                 Console.WriteLine
                 (
-                    "{0, -5} | {1, -20} | {2, -10} | {3, -15} | {4, -5} | {5, -10}",
+                    "{0, -5} | {1, -20} | {2, -10} | {3, -15} | {4, -5} | {5, -10} ",
                     revista.Id,
                     revista.titulo,
                     revista.numeroRevista,
                     revista.ano,
                     revista.status,
-                    revista.idCaixa
+                    revista.Caixa.cor
                 );
             }
             Console.ReadLine();
@@ -73,10 +73,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Id da caixa: ");
             int idCaixa = int.Parse(Console.ReadLine());
 
+            Caixa caixaSelecionada = (Caixa)repositorioCaixa.SelecionarPorId(idCaixa);
 
-            Revista novaRevista = new Revista(titulo, numeroEdicao, anoEdicao, status, idCaixa);
+            Revista novaRevista = new Revista(titulo, numeroEdicao, anoEdicao, status, caixaSelecionada);
 
             return novaRevista;
         }
+        
     }
 }

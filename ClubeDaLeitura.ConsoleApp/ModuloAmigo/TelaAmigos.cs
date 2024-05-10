@@ -87,5 +87,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
 
             return novoAmigo;
         }
+
+        public void EntidadeTeste()
+        {
+            Amigo Amigo = new Amigo("Eliabe","Atonio", "49 9999-9521", "Rua teste");
+
+            repositorio.Cadastrar(Amigo);
+        }
     }
 }

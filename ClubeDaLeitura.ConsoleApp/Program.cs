@@ -16,17 +16,22 @@ namespace ClubeDaLeitura.ConsoleApp
             telaAmigos.tipoEntidade = "Amigo";
             telaAmigos.repositorio = repositorioAmigos;
 
+            telaAmigos.EntidadeTeste();
+
             RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
 
             TelaCaixa telaCaixa = new TelaCaixa();
             telaCaixa.tipoEntidade = "Caixa";
             telaCaixa.repositorio = repositorioCaixa;
 
+            telaCaixa.EntidadeTeste();
+
             RepositorioRevistas repositorioRevista = new RepositorioRevistas();
             TelaRevista telaRevista = new TelaRevista();
             telaRevista.tipoEntidade = "Revista";
             telaRevista.repositorio = repositorioRevista;
             telaRevista.telaCaixa = telaCaixa;
+            telaRevista.repositorioCaixa = repositorioCaixa;
 
             while (true)
             {

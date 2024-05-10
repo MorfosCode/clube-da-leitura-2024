@@ -15,15 +15,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         public int numeroRevista { get; set; }
         public int ano { get; set; }
         public string status { get; set; }
-        public int idCaixa { get; set; }
+        public Caixa Caixa { get; set; }
 
-        public Revista(string titulo, int numeroRevista, int ano, string status, int idCaixa)
-        { 
+        public Revista(string titulo, int numeroRevista, int ano, string status, Caixa Caixa)
+        {
             this.titulo = titulo;
             this.numeroRevista = numeroRevista;
             this.ano = ano;
             this.status = status;
-            this.idCaixa = idCaixa;
+            this.Caixa = Caixa; 
         }
 
         public override ArrayList Validar()
