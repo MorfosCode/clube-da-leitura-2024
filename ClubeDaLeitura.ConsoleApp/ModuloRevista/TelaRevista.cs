@@ -35,7 +35,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
             ArrayList revistasCadastradas = repositorio.SelecionarTodos();
 
-            foreach (Revista revista in revistasCadastradas)
+            foreach (Revista revista 
+                in revistasCadastradas)
             {
                 if (revista == null)
                     continue;
@@ -69,6 +70,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Status da revista: ");
             string status = Console.ReadLine();
 
+            Console.WriteLine();
             Console.WriteLine("Lista de caixas");
             telaCaixa.VisualizarRegistros(false);
 

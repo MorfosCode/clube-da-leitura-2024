@@ -14,10 +14,10 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
     internal class TelaReserva : TelaBase
     {
         public TelaAmigos telaAmigo = null;
-        public RepositorioAmigos repositorioAmigos = new RepositorioAmigos();
+        public RepositorioAmigos repositorioAmigos = null;
 
         public TelaRevista telaRevista = null;
-        public RepositorioRevistas repositorioRevistas = new RepositorioRevistas();
+        public RepositorioRevistas repositorioRevistas = null;
 
         public override void VisualizarRegistros(bool exibirTitulo)
         {
@@ -32,26 +32,30 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
 
             Console.WriteLine
             (
-                "{0, -5} | {1, -25} | {2, -25} | {3, -15}",
-                "Id", "Amigo", "Título da Revista", "Data de Reserva"
+                "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -10}",
+                "Id", "Amigo", "Título da Revista", "Data de Reserva", "Status"
             );
 
             ArrayList reservasCadastradas = repositorio.SelecionarTodos();
 
             foreach (Reserva reserva in reservasCadastradas)
             {
+                string status = reserva.VerificarStatusReserva(reserva.dataReserva);
+
                 if (reserva == null)
                     continue;
 
                 Console.WriteLine
                 (
-                    "{0, -5} | {1, -25} | {2, -25} | {3, -15}",
+                    "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -10}",
                     reserva.Id,
                     reserva.amigo.nome,
                     reserva.revista.titulo,
-                    reserva.dataReserva
+                    reserva.dataReserva.ToShortDateString(),
+                    status
                 );
             }
+            Console.ReadLine();
             Console.WriteLine();
         }
 
@@ -59,7 +63,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
         
         {
             Console.WriteLine("Solicitação de reserva de revista!");
-            
+
+            Console.WriteLine();
+            Console.WriteLine("Lista de Amigos");
             telaAmigo.VisualizarRegistros(false);
 
             Console.Write("ID do amigo: ");
@@ -67,6 +73,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
 
             Amigo amigoSelecionado = (Amigo)repositorioAmigos.SelecionarPorId(idAmigo);
 
+            Console.WriteLine();
+            Console.WriteLine("Lista de Revistas");
             telaRevista.VisualizarRegistros(false);
 
             Console.Write("ID da revista: ");

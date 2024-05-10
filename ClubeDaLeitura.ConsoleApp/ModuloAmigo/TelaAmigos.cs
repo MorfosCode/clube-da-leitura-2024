@@ -67,6 +67,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
                     amigo.endereco
                 );
             }
+            Console.ReadLine();
             Console.WriteLine();
         }
 

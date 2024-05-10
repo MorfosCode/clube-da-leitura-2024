@@ -20,7 +20,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
         {
             this.amigo = amigo;
             this.revista = revista;
-            this.dataReserva = DateTime.Now;
+            this.dataReserva = dataReserva;
         }
 
         public override void AtualizarRegistro(EntidadeBase novaReserva)
@@ -29,6 +29,22 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
             this.amigo = reserva.amigo;
             this.revista = reserva.revista;
             this.dataReserva = reserva.dataReserva;
+        }
+
+        public string VerificarStatusReserva(DateTime dataReserva)
+        {
+            DateTime hoje = DateTime.Now;
+            string status = null;
+
+            int dia = Convert.ToInt32(hoje.Day);
+            int dataRes = Convert.ToInt32(dataReserva.Day);
+
+            if ((dia - dataRes) <= 2)
+                status = "Reservado";
+            else
+                status = "Expirado";
+
+            return status;
         }
 
         public override ArrayList Validar()
