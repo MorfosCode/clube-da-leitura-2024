@@ -6,17 +6,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace ClubeDaLeitura.ConsoleApp
+namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     public class Emprestimo : EntidadeBase
     {
         public Revista revista { get; set; }
-        public Caixa caixa { get; set; }    
-        public Amigo amigo
-        { set; get; }
+        public Amigo amigo { set; get; }
         public DateTime dtEmpretimo { set; get; }
-        public DateTime dtDevolucao { set; get; }
+        public DateTime dtDevolucao;
+     
         public int QuantidadeDiasEmAberto
         {
             get
@@ -30,26 +30,34 @@ namespace ClubeDaLeitura.ConsoleApp
                 return diferencaNumero;
             }
         }
-        public Emprestimo(Revista revista, Amigo amigo)
+        public Emprestimo(Revista revista, Amigo amigo )
         {
-            revista = revista;
-            amigo = amigo;
-            this.dtEmpretimo = DateTime.Today;
-            this.dtDevolucao = dtEmpretimo.AddDays(caixa.diasEmprestimo);
+            this.revista = revista;
+            this.amigo = amigo;
+            this.dtEmpretimo = DateTime.Now;
+
         }
         public override void AtualizarRegistro(EntidadeBase novoregistro)
         {
             Emprestimo emprestimo = (Emprestimo)novoregistro;
 
-            this.revista = emprestimo.revista;
-            this.amigo = emprestimo.amigo;
+            this.revista.titulo = emprestimo.revista.titulo;
+            this.amigo.nome = emprestimo.amigo.nome;
             this.dtEmpretimo = emprestimo.dtEmpretimo;
             this.dtDevolucao = emprestimo.dtDevolucao;
         }
 
         public override ArrayList Validar()
         {
-            throw new NotImplementedException();
+
+            ArrayList erros = new ArrayList();
+
+            if (amigo == null)
+                erros.Add("a data do empréstimo precisa ser Informado!");
+
+
+
+            return erros;
         }
     }
 }

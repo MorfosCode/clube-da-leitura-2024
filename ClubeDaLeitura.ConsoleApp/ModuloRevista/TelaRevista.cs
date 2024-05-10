@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
                 "{0, -5} | {1, -20} | {2, -10} | {3, -15} | {4, -5} | {5, -10}",
                 "ID", "TÍTULO", "Nº EDIÇÃO", "ANO PUBLICAÇÃO", "STATUS", "CAIXA"
             );
-            
+
             ArrayList revistasCadastradas = repositorio.SelecionarTodos();
 
             foreach (Revista revista in revistasCadastradas)
@@ -51,12 +52,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
                 );
             }
             Console.ReadLine();
-            Console.WriteLine();
         }
 
         protected override EntidadeBase ObterRegistro()
         {
             Console.Write("Título: ");
+
             string titulo = Console.ReadLine();
 
             Console.Write("Nº da edição: ");
@@ -79,6 +80,16 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
             return novaRevista;
         }
-        
+        public void EntidadeTeste()
+        {
+            Caixa caixa = (Caixa)repositorioCaixa.SelecionarTodos()[0];
+
+            Revista revista = new Revista("Capitão america", 202, 20210, "Disponivel", caixa);
+
+
+            repositorio.Cadastrar(revista);
+        }
+
+
     }
 }

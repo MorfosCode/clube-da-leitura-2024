@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+﻿
+using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
 using System;
 using System.Collections;
@@ -49,8 +50,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -10} | {1, -15} | {2, -15} | {3, -20} ",
-                "Id", "Cor", "Etiqueta", "Numero"
+                "{0, -10} | {1, -15} | {2, -15} | {3, -20}  | {4, -20}",
+                "Id", "Cor", "Etiqueta", "Numero", "Dias de Emprestimos"
             );
             
             ArrayList caixaCadastradas = repositorio.SelecionarTodos();
@@ -61,11 +62,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
                     continue;
 
                 Console.WriteLine(
-                    "{0, -10} | {1, -15} | {2, -15} | {3, -20}",
+                    "{0, -10} | {1, -15} | {2, -15} | {3, -20}| {4, -20}",
                     caixa.Id,
                     caixa.cor,
                     caixa.etiqueta,
-                    caixa.numero
+                    caixa.numero,
+                    caixa.diasEmprestimo
                 );
             }
             Console.ReadLine();
@@ -87,7 +89,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             int dias = Convert.ToInt32(Console.ReadLine());   
 
 
-            Caixa novaCaixa = new Caixa(cor, etiqueta, numero,dias);
+            Caixa novaCaixa = new Caixa(cor, etiqueta, numero, dias);
 
             return novaCaixa;
         }

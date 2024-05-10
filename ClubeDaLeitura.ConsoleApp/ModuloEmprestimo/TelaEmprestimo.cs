@@ -1,5 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
+using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using System;
 using System.Collections;
@@ -12,11 +13,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     internal class TelaEmprestimo : TelaBase
     {
-        public RepositorioAmigos repositorioAmigos = null;
+
+        public TelaRevista telaRevista = null;
         public TelaAmigos telaAmigos = null;
 
         public RepositorioRevistas repositorioRevistas = null;
-        public TelaRevista telaRevista = null;
+        public RepositorioAmigos repositorioAmigos = null;
 
         public override void Registrar()
         {
@@ -48,30 +50,27 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             {
                 ApresentarCabecalho();
 
-                Console.WriteLine("Visualizando Caixa...");
+                Console.WriteLine("Visualizando Empréstimo...");
             }
 
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -10} | {1, -15} | {2, -15} | {3, -20} | {4, -20}",
-                "Id", "Amigo", "Revista", "Data Emprestimo","Data Devoução"
+                "{0, -10} | {1, -15} | {2, -15} | {3, -20}",
+                "Id", "Amigo", "Revista", "Data Emprestimo"
             ); ArrayList emprestimoCadastradas = repositorio.SelecionarTodos();
 
-            foreach (Emprestimo emprestimo
-
-                in emprestimoCadastradas)
+            foreach (Emprestimo emprestimo in emprestimoCadastradas)
             {
                 if (emprestimo == null)
                     continue;
 
                 Console.WriteLine(
-                    "{0, -10} | {1, -15} | {2, -15} | {3, -20} }",
+                    "{0, -10} | {1, -15} | {2, -15} | {3, -20} ",
                     emprestimo.Id,
                     emprestimo.amigo.nome,
                     emprestimo.revista.titulo,
-                    emprestimo.dtEmpretimo, 
-                    emprestimo.dtDevolucao
+                    emprestimo.dtEmpretimo
                 );
             }
             Console.ReadLine();
@@ -86,16 +85,26 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             int idAmigo = Convert.ToInt32(Console.ReadLine());
 
             Amigo amigoSelecinado = (Amigo)repositorioAmigos.SelecionarPorId(idAmigo);
-            
+
             telaRevista.VisualizarRegistros(false);
 
             Console.Write("Informe id da revista: ");
             int idRevista = Convert.ToInt32(Console.ReadLine());
             Revista revistaSelecinado = (Revista)repositorioRevistas.SelecionarPorId(idRevista);
 
+
             Emprestimo novoEmprestimo = new Emprestimo(revistaSelecinado, amigoSelecinado);
 
             return novoEmprestimo;
+        }
+        public void EntidadeTeste()
+        {
+            Revista revista= (Revista)repositorioRevistas.SelecionarTodos()[0];
+            Amigo amigo = (Amigo)repositorioAmigos.SelecionarTodos()[0];
+            
+            Emprestimo emprestimo = new Emprestimo(revista, amigo);
+           
+            repositorio.Cadastrar(emprestimo);
         }
     }
 }
