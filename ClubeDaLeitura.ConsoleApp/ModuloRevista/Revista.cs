@@ -14,15 +14,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         public string titulo { get; set; }
         public int numeroRevista { get; set; }
         public int ano { get; set; }
-        public string status { get; set; }
+        public bool statusEmprestimo { get; set; }
         public Caixa Caixa { get; set; }
 
-        public Revista(string titulo, int numeroRevista, int ano, string status, Caixa Caixa)
+        public Revista(string titulo, int numeroRevista, int ano, Caixa Caixa)
         {
             this.titulo = titulo;
             this.numeroRevista = numeroRevista;
             this.ano = ano;
-            this.status = status;
+            this.statusEmprestimo = false;
             this.Caixa = Caixa; 
         }
 
@@ -39,9 +39,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             if (ano == null)
                 erros.Add("O ano da revista precisa ser preenchido!");
 
-            if (status == null)
-                erros.Add("O status da revista precisa ser preenchido!");
-
+           
             return erros;
         }
 
@@ -51,17 +49,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             this.titulo = revista.titulo;
             this.numeroRevista = revista.numeroRevista;
             this.ano = revista.ano;
-            this.status = revista.status;
+            this.statusEmprestimo = false;
         }
 
         public void Emprestar()
         {
-            this.status = "Empretada";
+            this.statusEmprestimo = true;
         }
 
         public void Devolver()
         {
-            this.status = "Disponível";
+            this.statusEmprestimo = false;
         }
     }
 }

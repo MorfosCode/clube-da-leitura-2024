@@ -17,7 +17,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         public DateTime dtEmpretimo { set; get; }
         public DateTime dtDevolucao { set; get; }
 
-        public string statusEmprestimo { set; get; }
+        public bool statusEmprestimo { set; get; }
 
         public Emprestimo(Revista revista, Amigo amigo)
         {
@@ -25,21 +25,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             this.amigo = amigo;
             this.dtEmpretimo = DateTime.Now;
             this.dtDevolucao = dtEmpretimo.AddDays(revista.Caixa.diasEmprestimo);
-            this.statusEmprestimo = "Emprestado";
-        }
-
-        public int QuantidadeDiasEmAberto
-        {
-            get
-            {
-                DateTime dataHoje = DateTime.Now;
-
-                TimeSpan diferenca = dataHoje.Subtract(dtEmpretimo);
-
-                int diferencaNumero = diferenca.Days;
-
-                return diferencaNumero;
-            }
+            this.statusEmprestimo = false;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoregistro)
@@ -63,9 +49,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             return erros;
         }
 
-        public void Emprestar()
+       public void AbrirEmprestimo()
         {
             revista.Emprestar();
+        }
+        
+        public void FecharEmprestimo()
+        {
+            revista.Devolver();
+            statusEmprestimo = true;
         }
     }
 }

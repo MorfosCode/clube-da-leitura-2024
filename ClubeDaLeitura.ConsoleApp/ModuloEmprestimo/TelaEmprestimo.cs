@@ -29,10 +29,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine("----------------------------------------");
 
             Console.WriteLine();
-
-            Console.WriteLine($"1 - {tipoEntidade}r");
-            Console.WriteLine($"2 - Devolver");
-            Console.WriteLine($"3 - Visualizar {tipoEntidade}");
+            Console.WriteLine("1 - Cadastro de Novo Empréstimo");
+            Console.WriteLine("2 - Conclusão de Empréstimo");
+            Console.WriteLine("3 - Visualizar Empréstimos");
 
             Console.WriteLine("S - Voltar");
 
@@ -52,8 +51,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             Console.WriteLine();
 
-            Emprestimo emprestimo = (Emprestimo)ObterRegistro();
-            ArrayList erros = emprestimo.Validar();
+            Emprestimo entidade = (Emprestimo)ObterRegistro();
+
+            ArrayList erros = entidade.Validar();
 
             if (erros.Count > 0)
             {
@@ -62,8 +62,38 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             }
 
             //Altera o status de 'Disponível' para 'emprestada'
-            emprestimo.Emprestar();
-            base.InserirRegisdtro(emprestimo);
+
+            entidade.AbrirEmprestimo ();
+
+            base.InserirRegisdtro(entidade);
+        }
+        public void Concluir()
+        {
+            ApresentarCabecalho();
+
+            Console.WriteLine($"Conclusão de {tipoEntidade}...");
+
+            Console.WriteLine();
+
+            VisualizarEmprestimosEmAberto();
+
+            Console.Write("\nDigite o ID do empréstimo que deseja concluir: ");
+            int idEmprestimo = Convert.ToInt32(Console.ReadLine());
+
+            Emprestimo emprestimo = (Emprestimo)repositorio.SelecionarPorId(idEmprestimo);
+
+            emprestimo.FecharEmprestimo();
+
+            DateTime dataHoje = DateTime.Now;
+
+            if (dataHoje > emprestimo.dtDevolucao)
+            {
+            //    Multa multa = emprestimo.GerarMulta();
+
+            //    ExibirMensagem($"Uma multa de R$ {multa.Valor} foi gerada.", ConsoleColor.DarkYellow);
+            }
+
+            ExibirMensagem($"O empréstimo foi concluído com sucesso!", ConsoleColor.Green);
         }
         public override void VisualizarRegistros(bool exibirTitulo)
         {
@@ -77,6 +107,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine("3 - Todos emprestimos");
             Console.WriteLine("4 - Voltar");
             Console.WriteLine();
+
             Console.Write("Opção: ");
             char opcao = Console.ReadLine()[0];
 
@@ -88,10 +119,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             else if (opcao == '2')
                 emprestimos = ((RepositorioEmprestimo)repositorio).SelecionarEmprestimosDoDia();
 
-            else if (opcao == '3')
-                emprestimos = repositorio.SelecionarTodos();
             else
                 emprestimos = repositorio.SelecionarTodos();
+
 
             VisualizarEmprestimos(emprestimos);
         }
@@ -102,24 +132,52 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                 "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -12} | {5, -12}",
                 "Id", "Amigo", "Revista", "Data Emprestimo", "Prazo", "Status"
             );
-            
-            ArrayList emprestimoCadastradas = repositorio.SelecionarTodos();
 
-            foreach (Emprestimo emprestimo in emprestimoCadastradas)
+            foreach (Emprestimo e in emprestimos)
             {
-                if (emprestimo == null)
+                if (e == null)
                     continue;
+                string statusEmprestimo = e.statusEmprestimo ? "Concluído" : "Em Aberto";
 
                 Console.WriteLine(
                     "{0, -5} | {1, -25} | {2, -25} | {3, -15} | {4, -12} | {5, -12}",
-                    emprestimo.Id,
-                    emprestimo.amigo.nome,
-                    emprestimo.revista.titulo,
-                    emprestimo.dtEmpretimo.ToShortDateString(),
-                    emprestimo.dtDevolucao.ToShortDateString(),
-                    emprestimo.statusEmprestimo
+                    e.Id,
+                    e.amigo.nome,
+                    e.revista.titulo,
+                    e.dtEmpretimo.ToShortDateString(),
+                    e.dtDevolucao.ToShortDateString(),
+                    e.statusEmprestimo
+                );  
+            }
+            Console.ReadLine();
+        }
+
+
+
+        private void VisualizarEmprestimosEmAberto()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -20}",
+                "Id", "Revista", "Amigo", "Data", "Data de Devolução", "Status"
+            );
+
+            ArrayList registros = ((RepositorioEmprestimo)repositorio).SelecionarEmprestimosEmAberto();
+
+            foreach (Emprestimo e in registros)
+            {
+                if (e == null)
+                    continue;
+
+                string statusEmprestimo = e.statusEmprestimo ? "Concluído" : "Em Aberto";
+
+                Console.WriteLine(
+                    "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -20}",
+                    e.Id, e.revista.Id, e.amigo.nome, e.dtEmpretimo.ToShortDateString(), e.dtDevolucao.ToShortDateString(), statusEmprestimo
                 );
             }
+
             Console.ReadLine();
         }
 

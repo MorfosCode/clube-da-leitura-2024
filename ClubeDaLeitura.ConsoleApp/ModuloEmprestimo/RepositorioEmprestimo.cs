@@ -37,6 +37,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             return emprestimosDoDia;
         }
+
+        internal ArrayList SelecionarEmprestimosEmAberto()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
