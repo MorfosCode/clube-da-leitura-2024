@@ -74,16 +74,16 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
         protected override EntidadeBase ObterRegistro()
         {
             Console.Write("Nome: ");
-            string nome = Console.ReadLine();
+            string nome = Console.ReadLine().ToUpper();
 
             Console.Write("Informe o  responsavel: ");
-            string responsavel = Console.ReadLine();
+            string responsavel = Console.ReadLine().ToUpper();
 
             Console.Write("Informe o telefone: "); 
             string telefone = Console.ReadLine();
 
             Console.Write("Informe o endereço: ");
-            string endereco = Console.ReadLine();
+            string endereco = Console.ReadLine().ToUpper();
 
             Amigo novoAmigo = new Amigo(nome, responsavel,telefone,endereco);
 

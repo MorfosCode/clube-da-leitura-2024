@@ -53,5 +53,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             this.ano = revista.ano;
             this.status = revista.status;
         }
+
+        public void Emprestar()
+        {
+            this.status = "Empretada";
+        }
+
+        public void Devolver()
+        {
+            this.status = "Disponível";
+        }
     }
 }

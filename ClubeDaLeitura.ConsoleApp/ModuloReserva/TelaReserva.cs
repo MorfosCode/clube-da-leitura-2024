@@ -13,11 +13,35 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
 {
     internal class TelaReserva : TelaBase
     {
-        public TelaAmigos telaAmigo = null;
+        public TelaAmigos telaAmigos = null;
         public RepositorioAmigos repositorioAmigos = null;
 
         public TelaRevista telaRevista = null;
         public RepositorioRevistas repositorioRevistas = null;
+
+        public override char ApresentarMenu()
+        {
+            Console.Clear();
+
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine($"        Gestão de {tipoEntidade}s        ");
+            Console.WriteLine("----------------------------------------");
+
+            Console.WriteLine();
+
+            Console.WriteLine($"1 - {tipoEntidade}r");
+            Console.WriteLine($"2 - Encerrar {tipoEntidade}");
+            Console.WriteLine($"3 - Visualizar {tipoEntidade}");
+
+            Console.WriteLine("S - Voltar");
+
+            Console.WriteLine();
+
+            Console.Write("Opção: ");
+            char operacaoEscolhida = Convert.ToChar(Console.ReadLine());
+
+            return operacaoEscolhida;
+        }
 
         public override void VisualizarRegistros(bool exibirTitulo)
         {
@@ -66,7 +90,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
 
             Console.WriteLine();
             Console.WriteLine("Lista de Amigos");
-            telaAmigo.VisualizarRegistros(false);
+            telaAmigos.VisualizarRegistros(false);
 
             Console.Write("ID do amigo: ");
             int idAmigo = Convert.ToInt32(Console.ReadLine());
@@ -80,7 +104,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloReserva
             Console.Write("ID da revista: ");
             int idRevista = Convert.ToInt32(Console.ReadLine());
 
-            Revista revistaSelecionada = (Revista)repositorioRevistas.SelecionarPorId(idAmigo);
+            Revista revistaSelecionada = (Revista)repositorioRevistas.SelecionarPorId(idRevista);
 
             DateTime hoje = DateTime.Now;
 

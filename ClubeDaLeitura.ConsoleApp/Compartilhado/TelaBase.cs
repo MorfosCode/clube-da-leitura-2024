@@ -7,7 +7,7 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
         public string tipoEntidade = "";
         public RepositorioBase repositorio = null;
 
-        public char ApresentarMenu()
+        public virtual char ApresentarMenu()
         {
             Console.Clear();
 
@@ -30,6 +30,19 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
             char operacaoEscolhida = Convert.ToChar(Console.ReadLine());
 
             return operacaoEscolhida;
+        }
+
+        protected void InserirRegisdtro(EntidadeBase entidade)
+        {
+            ArrayList erros = entidade.Validar();
+
+            if (erros.Count > 0)
+            {
+                ApresentarErros(erros);
+                return;
+            }
+            repositorio.Cadastrar(entidade);
+            ExibirMensagem($"O {tipoEntidade} foi cadastrado com sucesso!", ConsoleColor.Green);
         }
 
         public virtual void Registrar()

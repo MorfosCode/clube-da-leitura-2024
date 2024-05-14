@@ -59,7 +59,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         {
             Console.Write("Título: ");
 
-            string titulo = Console.ReadLine();
+            string titulo = Console.ReadLine().ToUpper();
 
             Console.Write("Nº da edição: ");
             int numeroEdicao = int.Parse(Console.ReadLine());
@@ -67,11 +67,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Ano da edição: ");
             int anoEdicao = int.Parse(Console.ReadLine());
 
-            Console.Write("Status da revista: ");
-            string status = Console.ReadLine();
-
             Console.WriteLine();
-            Console.WriteLine("Lista de caixas");
+            Console.WriteLine("LISTA DE CAIXAS");
             telaCaixa.VisualizarRegistros(false);
 
             Console.Write("Id da caixa: ");
@@ -79,7 +76,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
             Caixa caixaSelecionada = (Caixa)repositorioCaixa.SelecionarPorId(idCaixa);
 
-            Revista novaRevista = new Revista(titulo, numeroEdicao, anoEdicao, status, caixaSelecionada);
+            Revista novaRevista = new Revista(titulo, numeroEdicao, anoEdicao, "Disponível", caixaSelecionada);
 
             return novaRevista;
         }
@@ -87,7 +84,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         {
             Caixa caixa = (Caixa)repositorioCaixa.SelecionarTodos()[0];
 
-            Revista revista = new Revista("Capitão america", 202, 20210, "Disponivel", caixa);
+            Revista revista = new Revista("CAPITÃO AMÉRICA", 202, 20210, "DISPONÍVEL", caixa);
 
 
             repositorio.Cadastrar(revista);

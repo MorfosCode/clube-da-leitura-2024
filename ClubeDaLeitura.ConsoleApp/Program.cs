@@ -3,6 +3,7 @@ using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeDaLeitura.ConsoleApp.ModuloReserva;
 
 
 namespace ClubeDaLeitura.ConsoleApp
@@ -37,7 +38,7 @@ namespace ClubeDaLeitura.ConsoleApp
 
             RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo();
-            telaEmprestimo.tipoEntidade = "Empréstimo";
+            telaEmprestimo.tipoEntidade = "Emprestar";
             telaEmprestimo.repositorio = repositorioEmprestimo;
 
             telaEmprestimo.telaAmigos = telaAmigos;
@@ -48,43 +49,73 @@ namespace ClubeDaLeitura.ConsoleApp
             
             telaEmprestimo.EntidadeTeste();
 
+            RepositorioReserva repositorioReserva = new RepositorioReserva();
+            TelaReserva telaReserva = new TelaReserva();
+            telaReserva.tipoEntidade = "Reserva";
+            telaReserva.repositorio = repositorioReserva;
+            telaReserva.telaAmigos = telaAmigos;
+            telaReserva.telaRevista = telaRevista;
+            telaReserva.repositorioAmigos = repositorioAmigos;
+            telaReserva.repositorioRevistas = repositorioRevista;
+
 
             while (true)
             {
-                char opcaoPrincipalEscolhida = TelaPrincipal.ApresentarMenuPrincipal();
+                char opcaoTelaEscolhida = TelaPrincipal.ApresentarMenuPrincipal();
 
-                if (opcaoPrincipalEscolhida == 'S' || opcaoPrincipalEscolhida == 's')
+                if (opcaoTelaEscolhida == 'S' || opcaoTelaEscolhida == 's')
                     break;
 
                 TelaBase tela = null;
 
-                if (opcaoPrincipalEscolhida == '1')
+                if (opcaoTelaEscolhida == '1')
                     tela = telaAmigos;
-                else if(opcaoPrincipalEscolhida == '2')
+                else if(opcaoTelaEscolhida == '2')
                     tela = telaCaixa;
-                else if (opcaoPrincipalEscolhida == '3')
+                else if (opcaoTelaEscolhida == '3')
                     tela = telaRevista;
-                else if (opcaoPrincipalEscolhida == '4')
+                else if (opcaoTelaEscolhida == '4')
                     tela = telaEmprestimo;
+                else if (opcaoTelaEscolhida == '5')
+                    tela = telaReserva;
 
-                char operacaoEscolhida = tela.ApresentarMenu();
+                char opcaoSubMenu = tela.ApresentarMenu();
 
-                if (operacaoEscolhida == 'S' || operacaoEscolhida == 's')
+                if (opcaoSubMenu == 'S' || opcaoSubMenu == 's')
                     continue;
 
-                if (operacaoEscolhida == '1')
+                if (opcaoTelaEscolhida == '4')
+                {
+                    if (opcaoSubMenu == '1')
+                        telaEmprestimo.Registrar();
+                    else if (opcaoSubMenu == '2')
+                        telaEmprestimo.Excluir();
+                    else if (opcaoSubMenu == '3')
+                        telaEmprestimo.VisualizarRegistros(true);
+                }
+
+                else if (opcaoTelaEscolhida == '5')
+                {
+                    if (opcaoSubMenu == '1')
+                        telaReserva.Registrar();
+                    else if (opcaoSubMenu == '2')
+                        telaReserva.Excluir();
+                    else if (opcaoSubMenu == '3')
+                        telaReserva.VisualizarRegistros(true);
+                }
+
+                if (opcaoSubMenu == '1')
                     tela.Registrar();
 
-                else if (operacaoEscolhida == '2')
+                else if (opcaoSubMenu == '2')
                     tela.Editar();
 
-                else if (operacaoEscolhida == '3')
+                else if (opcaoSubMenu == '3')
                     tela.Excluir();
 
-                else if (operacaoEscolhida == '4')
+                else if (opcaoSubMenu == '4')
                     tela.VisualizarRegistros(true);
             }
-
             Console.ReadLine();
         }
     }
